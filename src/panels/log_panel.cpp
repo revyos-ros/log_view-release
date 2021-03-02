@@ -89,24 +89,49 @@ void LogPanel::refresh() {
   drawScrollBar(getContentSize(), getContentHeight(), 0, width_ - 1);
 }
 
+bool LogPanel::handleKey(int key) {
+  if (hidden()) {
+    return false;
+  }
+
+  if (key == ctrl('a')) {
+      selectAll();
+
+      return true;
+  }
+
+  return false;
+}
+
+
 bool LogPanel::handleMouse(const MEVENT& event) {
+  if (hidden() || !encloses(event.y, event.x)) {
+    return false;
+  }
+
   if (event.bstate & BUTTON1_PRESSED) {
     mouse_down_ = true;
     startSelect(event.y - y_);
     forceRefresh();
+    return true;
   }
   else if (mouse_down_ && (event.bstate & REPORT_MOUSE_POSITION)) {
     endSelect(event.y - y_);
     forceRefresh();
+    return true;
   }
   else if (event.bstate & BUTTON1_RELEASED) {
     mouse_down_ = false;
     copyToClipboard();
+    return true;
   }
   else if (!mouse_down_ && (event.bstate & BUTTON3_PRESSED)) {
     filter_.clearSelect();
     forceRefresh();
+    return true;
   }
+
+  return false;
 }
 
 void LogPanel::resize(int height, int width, int y, int x) {
