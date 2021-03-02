@@ -1,0 +1,34 @@
+ros-melodic-log-view (0.1.3-1bionic) bionic; urgency=high
+
+  * Prevent help screen text from wrapping.
+  * Make help screen modal.
+  * Add keybindings for selecting all nodes and inverting the node selection.
+  * Update README.
+  * Fix compiler warnings.
+  * Contributors: Marc Alban
+
+ -- Marc Alban <marcalban@hatchbed.com>  Mon, 01 Mar 2021 06:00:00 -0000
+
+ros-melodic-log-view (0.1.2-1bionic) bionic; urgency=high
+
+  * Install binary log_viewer to package destination instead of global destination.
+  * Contributors: Marc Alban
+
+ -- Marc Alban <marcalban@hatchbed.com>  Thu, 26 Nov 2020 06:00:00 -0000
+
+ros-melodic-log-view (0.1.1-1bionic) bionic; urgency=high
+
+  * Fixes for build farm.
+  * Contributors: Marc Alban
+
+ -- Marc Alban <marcalban@hatchbed.com>  Tue, 24 Nov 2020 06:00:00 -0000
+
+ros-melodic-log-view (0.1.0-1bionic) bionic; urgency=high
+
+  * Initial working version.
+  * Initial code.
+  * Contributors: Marc Alban
+
+ -- Marc Alban <marcalban@hatchbed.com>  Sun, 22 Nov 2020 06:00:00 -0000
+
+
