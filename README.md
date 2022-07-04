@@ -1,3 +1,26 @@
+## log_view (galactic) - 0.2.0-1
+
+The packages in the `log_view` repository were released into the `galactic` distro by running `/usr/bin/bloom-release --rosdistro galactic --track galactic log_view` on `Mon, 04 Jul 2022 15:20:33 -0000`
+
+The `log_view` package was released.
+
+Version of package(s) in repository `log_view`:
+
+- upstream repository: https://github.com/hatchbed/log_view.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.2.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.11.1`
+- catkin_pkg version: `0.5.2`
+- rosdep version: `0.21.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## log_view (noetic) - 0.1.3-1
 
 The packages in the `log_view` repository were released into the `noetic` distro by running `/usr/bin/bloom-release log_view --rosdistro noetic` on `Tue, 02 Mar 2021 02:52:30 -0000`
