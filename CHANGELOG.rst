@@ -2,6 +2,11 @@
 Changelog for package log_view
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.1 (2022-07-07)
+------------------
+* Remove unused boost include.
+* Contributors: Marc Alban
+
 0.2.0 (2022-07-04)
 ------------------
 * Port to ROS2
