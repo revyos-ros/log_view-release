@@ -1,3 +1,26 @@
+## log_view (humble) - 0.2.3-1
+
+The packages in the `log_view` repository were released into the `humble` distro by running `/usr/bin/bloom-release log_view --rosdistro humble` on `Mon, 08 Jul 2024 13:55:26 -0000`
+
+The `log_view` package was released.
+
+Version of package(s) in repository `log_view`:
+
+- upstream repository: https://github.com/hatchbed/log_view.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.2.3-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `0.5.2`
+- rosdep version: `0.24.0`
+- rosdistro version: `0.9.1`
+- vcstools version: `0.1.42`
+
+
 ## log_view (galactic) - 0.2.2-1
 
 The packages in the `log_view` repository were released into the `galactic` distro by running `/usr/bin/bloom-release --rosdistro galactic --track galactic log_view` on `Sat, 30 Jul 2022 20:58:17 -0000`
