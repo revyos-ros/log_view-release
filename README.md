@@ -1,3 +1,26 @@
+## log_view (humble) - 0.2.3-2
+
+The packages in the `log_view` repository were released into the `humble` distro by running `/home/z572/gits/revyos-ros/venv2/bin/bloom-release -r humble log_view --override-release-repository-push-url git@github.com:revyos-ros/log_view-release.git` on `Mon, 04 Nov 2024 07:05:25 -0000`
+
+The `log_view` package was released.
+
+Version of package(s) in repository `log_view`:
+
+- upstream repository: https://github.com/hatchbed/log_view.git
+- release repository: https://github.com/revyos-ros/log_view-release.git
+- rosdistro version: `0.2.3-1`
+- old version: `0.2.3-1`
+- new version: `0.2.3-2`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## log_view (humble) - 0.2.3-1
 
 The packages in the `log_view` repository were released into the `humble` distro by running `/usr/bin/bloom-release log_view --rosdistro humble` on `Mon, 08 Jul 2024 13:55:26 -0000`
