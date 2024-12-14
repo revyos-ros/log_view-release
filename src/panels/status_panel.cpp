@@ -32,14 +32,14 @@ namespace log_view {
 void StatusPanel::refresh() {
   wattron(window_, A_REVERSE);
   std::string clear(width_, ' ');
-  mvwprintw(window_, 0, 0, clear.c_str());
+  mvwprintw(window_, 0, 0, "%s", clear.c_str());
   mvwprintw(window_, 0, 0, "logs: %zu", logs_->size());
 
   std::string system_time = toString(system_time_.seconds(), 2);
   std::string ros_time =  toString(ros_time_.seconds(), 2);
 
   std::string time_str = "ros time: " + ros_time + "  system time: " + system_time;
-  mvwprintw(window_, 0, width_ - time_str.size(), time_str.c_str());
+  mvwprintw(window_, 0, width_ - time_str.size(), "%s", time_str.c_str());
   wattroff(window_, A_REVERSE);
 }
 
