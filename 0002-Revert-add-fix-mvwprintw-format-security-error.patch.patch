@@ -1,0 +1,176 @@
+From a528752b060c006b5c4f7947df6d56b3c3c878b0 Mon Sep 17 00:00:00 2001
+From: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+Date: Thu, 9 Jan 2025 12:29:27 +0800
+Subject: [PATCH 2/2] Revert "add fix-mvwprintw-format-security-error.patch
+ patch."
+
+This reverts commit 50ad57d7a46fd325d8b2301171c405153ca93ae6.
+---
+ .../fix-mvwprintw-format-security-error.patch | 146 ------------------
+ debian/patches/series                         |   1 -
+ 2 files changed, 147 deletions(-)
+ delete mode 100644 debian/patches/fix-mvwprintw-format-security-error.patch
+ delete mode 100644 debian/patches/series
+
+diff --git a/debian/patches/fix-mvwprintw-format-security-error.patch b/debian/patches/fix-mvwprintw-format-security-error.patch
+deleted file mode 100644
+index ff3ed28..0000000
+--- a/debian/patches/fix-mvwprintw-format-security-error.patch
++++ /dev/null
+@@ -1,146 +0,0 @@
+-https://github.com/hatchbed/log_view/commit/46d852119bcbbe86d500940ddac4d8eb2693705b.patch
+-
+-From: Marc Alban <marcalban@hatchbed.com>
+-Date: Wed, 24 Jul 2024 08:01:01 -0500
+-Subject: [PATCH] Fix mvwprintw format-security error
+-
+----
+- src/panels/help_panel.cpp   | 6 +++---
+- src/panels/level_panel.cpp  | 4 ++--
+- src/panels/log_panel.cpp    | 4 ++--
+- src/panels/node_panel.cpp   | 4 ++--
+- src/panels/search_panel.cpp | 8 ++++----
+- src/panels/status_panel.cpp | 2 +-
+- 6 files changed, 14 insertions(+), 14 deletions(-)
+-
+-diff --git a/src/panels/help_panel.cpp b/src/panels/help_panel.cpp
+-index b560fde..74e871b 100644
+---- a/src/panels/help_panel.cpp
+-+++ b/src/panels/help_panel.cpp
+-@@ -99,14 +99,14 @@ bool HelpPanel::handleKey(int key) {
+- }
+- 
+- void HelpPanel::printKeybinding(const HelpText& help_text) {
+--    mvwprintw(window_,  help_text.line, 3, help_text.key.c_str());
+-+    mvwprintw(window_,  help_text.line, 3, "%s", help_text.key.c_str());
+- 
+-     int max_size = std::max(0, width() - (static_cast<int>(longest_key_) + 10));
+-     auto desc = help_text.description;
+-     if (desc.size() > max_size) {
+-       desc.resize(max_size);
+-     }
+--    mvwprintw(window_,  help_text.line, longest_key_ + 8, desc.c_str());
+-+    mvwprintw(window_,  help_text.line, longest_key_ + 8, "%s", desc.c_str());
+- 
+-     int line_start = help_text.key.length() + 4;
+-     int line_end = longest_key_ + 7;
+-@@ -116,4 +116,4 @@ void HelpPanel::printKeybinding(const HelpText& help_text) {
+-     wattroff(window_, COLOR_PAIR(CP_GREY));
+- }
+- 
+--} // namespace log_view
+-\ No newline at end of file
+-+} // namespace log_view
+-diff --git a/src/panels/level_panel.cpp b/src/panels/level_panel.cpp
+-index c502aba..449a2dd 100644
+---- a/src/panels/level_panel.cpp
+-+++ b/src/panels/level_panel.cpp
+-@@ -33,7 +33,7 @@ void LevelPanel::refresh() {
+-   wattron(window_, A_REVERSE);
+-   wattron(window_, A_BOLD);
+-   std::string clear(width_, ' ');
+--  mvwprintw(window_, 0, 0, clear.c_str());
+-+  mvwprintw(window_, 0, 0, "%s", clear.c_str());
+-   mvwprintw(window_, 0, 0, " debug  info  warn  error  fatal      all nodes");
+-   wattroff(window_, A_BOLD);
+-   mvwprintw(window_, 0, width_ - 17, "CTRL+h: view help");
+-@@ -119,4 +119,4 @@ void LevelPanel::toggleAllNodes() {
+-   refresh();
+- }
+- 
+--} // namespace log_view
+-\ No newline at end of file
+-+} // namespace log_view
+-diff --git a/src/panels/log_panel.cpp b/src/panels/log_panel.cpp
+-index 0777af0..36c7233 100644
+---- a/src/panels/log_panel.cpp
+-+++ b/src/panels/log_panel.cpp
+-@@ -279,7 +279,7 @@ void LogPanel::printEntry(size_t row, const LogEntry& entry, size_t line, size_t
+-     text.resize(width_);
+-   }
+- 
+--  mvwprintw(window_, row, 0, text.c_str());
+-+  mvwprintw(window_, row, 0, "%s", text.c_str());
+- 
+-   if (matched) {
+-     wattron(window_, COLOR_PAIR(CP_DEFAULT_CYAN));
+-@@ -297,7 +297,7 @@ void LogPanel::printEntry(size_t row, const LogEntry& entry, size_t line, size_t
+- 
+-         int64_t substr_len = std::max(static_cast<int64_t>(1), end_idx - start_idx);
+- 
+--        mvwprintw(window_, row, start_idx, text.substr(start_idx, substr_len).c_str());
+-+        mvwprintw(window_, row, start_idx, "%s", text.substr(start_idx, substr_len).c_str());
+-       }
+-     }
+-     wattroff(window_, COLOR_PAIR(CP_DEFAULT_CYAN));
+-diff --git a/src/panels/node_panel.cpp b/src/panels/node_panel.cpp
+-index 13ebd71..6c2db2e 100644
+---- a/src/panels/node_panel.cpp
+-+++ b/src/panels/node_panel.cpp
+-@@ -99,7 +99,7 @@ void NodePanel::refresh() {
+-       cropped = true;
+-     }
+- 
+--    mvwprintw(window_, i + 1, 1, text.c_str());
+-+    mvwprintw(window_, i + 1, 1, "%s", text.c_str());
+- 
+-     if (hover) {
+-       wattroff(window_, A_BOLD);
+-@@ -252,4 +252,4 @@ void NodePanel::select() {
+-   filter_.toggleNode(selected_);
+- }
+- 
+--} // namespace log_view
+-\ No newline at end of file
+-+} // namespace log_view
+-diff --git a/src/panels/search_panel.cpp b/src/panels/search_panel.cpp
+-index f9283e8..2bbedde 100644
+---- a/src/panels/search_panel.cpp
+-+++ b/src/panels/search_panel.cpp
+-@@ -33,13 +33,13 @@ void SearchPanel::refresh() {
+-   if (show_results_) {
+-     wattron(window_, COLOR_PAIR(CP_DEFAULT_GREY));
+-     std::string background(width_, ' ');
+--    mvwprintw(window_, 0, 0, background.c_str());
+-+    mvwprintw(window_, 0, 0, "%s", background.c_str());
+-     std::string text = "match: " + filter_.getSearch();
+--    mvwprintw(window_, 0, 0, text.c_str());
+-+    mvwprintw(window_, 0, 0, "%s", text.c_str());
+- 
+-     std::string help = "  Press Enter/Backspace to move forward/backward through search results";
+-     if (help.length() + text.length() <= width_) {
+--        mvwprintw(window_, 0, width_ - help.length(), help.c_str());
+-+        mvwprintw(window_, 0, width_ - help.length(), "%s", help.c_str());
+-     }
+- 
+-     wattroff(window_, COLOR_PAIR(CP_DEFAULT_GREY));
+-@@ -100,4 +100,4 @@ void SearchPanel::toggle() {
+-   }
+- }
+- 
+--} // namespace log_view
+-\ No newline at end of file
+-+} // namespace log_view
+-diff --git a/src/panels/status_panel.cpp b/src/panels/status_panel.cpp
+-index 9aa2a13..38c35e8 100644
+---- a/src/panels/status_panel.cpp
+-+++ b/src/panels/status_panel.cpp
+-@@ -39,7 +39,7 @@ void StatusPanel::refresh() {
+-   std::string ros_time =  toString(ros_time_.seconds(), 2);
+- 
+-   std::string time_str = "ros time: " + ros_time + "  system time: " + system_time;
+--  mvwprintw(window_, 0, width_ - time_str.size(), time_str.c_str());
+-+  mvwprintw(window_, 0, width_ - time_str.size(), "%s", time_str.c_str());
+-   wattroff(window_, A_REVERSE);
+- }
+- 
+diff --git a/debian/patches/series b/debian/patches/series
+deleted file mode 100644
+index 184a8ec..0000000
+--- a/debian/patches/series
++++ /dev/null
+@@ -1 +0,0 @@
+-fix-mvwprintw-format-security-error.patch
+-- 
+2.47.1
+
