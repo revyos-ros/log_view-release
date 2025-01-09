@@ -1,4 +1,4 @@
-From a528752b060c006b5c4f7947df6d56b3c3c878b0 Mon Sep 17 00:00:00 2001
+From de2aa7d73f18ea2acd0b827703821a540ce434a5 Mon Sep 17 00:00:00 2001
 From: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 Date: Thu, 9 Jan 2025 12:29:27 +0800
 Subject: [PATCH 2/2] Revert "add fix-mvwprintw-format-security-error.patch

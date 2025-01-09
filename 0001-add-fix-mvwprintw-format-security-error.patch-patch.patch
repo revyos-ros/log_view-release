@@ -1,4 +1,4 @@
-From 50ad57d7a46fd325d8b2301171c405153ca93ae6 Mon Sep 17 00:00:00 2001
+From faa9d2c56680c54fe6eccfc8d513d53a392cd9a7 Mon Sep 17 00:00:00 2001
 From: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 Date: Mon, 4 Nov 2024 15:03:48 +0800
 Subject: [PATCH 1/2] add fix-mvwprintw-format-security-error.patch patch.
